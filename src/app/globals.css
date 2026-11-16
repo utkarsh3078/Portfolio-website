@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+/* ---------- Colour tokens ----------
+   Components only use these names (bg-bg, text-muted, border-line ...),
+   so the dark theme is a single swap here and needs no dark: variants. */
+:root,
+[data-theme="light"] {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --surface-2: #efede7;
+  --fg: #171714;
+  --muted: #65635b;
+  --line: #e1ded5;
+  --accent: #0c6b58;
+  --accent-fg: #f7f6f2;
+  --accent-soft: rgb(12 107 88 / 0.09);
+  --warm: #c2702f;
+  --live: #15925f;
+  --wip: #b87512;
+  --dot: rgb(23 23 20 / 0.13);
+  --glow-a: rgb(12 107 88 / 0.2);
+  --glow-b: rgb(214 138 60 / 0.2);
+  --shadow: 0 1px 2px rgb(23 23 20 / 0.04), 0 12px 32px -12px rgb(23 23 20 / 0.12);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0b0c0b;
+  --surface: #131513;
+  --surface-2: #1a1d1a;
+  --fg: #edece6;
+  --muted: #9c9b92;
+  --line: #262a26;
+  --accent: #74dcc0;
+  --accent-fg: #0b1a16;
+  --accent-soft: rgb(116 220 192 / 0.1);
+  --warm: #e6a566;
+  --live: #5fd6a3;
+  --wip: #e8b25a;
+  --dot: rgb(237 236 230 / 0.11);
+  --glow-a: rgb(116 220 192 / 0.16);
+  --glow-b: rgb(230 165 102 / 0.12);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 16px 40px -16px rgb(0 0 0 / 0.7);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-warm: var(--warm);
+  --color-live: var(--live);
+  --color-wip: var(--wip);
+
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+
+  --shadow-card: var(--shadow);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-drift-a: drift-a 18s ease-in-out infinite;
+  --animate-drift-b: drift-b 22s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 2.2s ease-out infinite;
+  --animate-wave: wave 7s linear infinite;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(6%, 8%, 0) scale(1.12); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-8%, -6%, 0) scale(0.92); }
+}
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 55%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 7px transparent; }
+}
+@keyframes wave {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Reusable pieces ---------- */
+@utility container-page {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (min-width: 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Dot grid that fades out toward the edges (hero and contact backgrounds) */
+@utility dot-grid {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 20%, transparent 75%);
+}
+
+/* Soft fade on both ends of the tech marquee */
+@utility fade-x {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Cursor-following glow. SpotlightCard sets --mx / --my on mouse move. */
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 0%),
+    var(--accent-soft),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Theme toggle shows the icon for the theme you would switch to */
+[data-theme="dark"] .theme-icon-moon,
+[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee,
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-pulse-dot,
+  .animate-wave {
+    animation: none;
+  }
+}
