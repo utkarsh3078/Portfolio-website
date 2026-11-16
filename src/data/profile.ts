@@ -8,6 +8,8 @@ export const profile = {
   location: "Gurugram, India",
   availability: "Open to internships and freelance work",
   email: "utkarshyadav3078@gmail.com",
+  // The account whose contribution heatmap is shown in the About section
+  githubUsername: "utkarsh3078",
   // Shown in the footer. Update it each year.
   copyrightYear: 2026,
 

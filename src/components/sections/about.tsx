@@ -1,7 +1,6 @@
 import { GraduationCap, MapPin, Users } from "lucide-react";
-import Image from "next/image";
 
-import cover from "@/assets/cover.jpg";
+import { GitHubActivity } from "@/components/github-activity";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { profile } from "@/data/profile";
@@ -132,20 +131,9 @@ export function AboutSection() {
           </div>
         </Reveal>
 
-        {/* The motto from my X and LinkedIn cover image */}
+        {/* GitHub contribution heatmap */}
         <Reveal className="lg:col-span-3">
-          <figure>
-            <div className="group overflow-hidden rounded-3xl border border-line bg-black shadow-card">
-              <Image
-                src={cover}
-                alt="Be obsessed with Peace, Consistency, Stability, Respect, and Loyalty."
-                placeholder="blur"
-                sizes="(min-width: 1152px) 1088px, 100vw"
-                className="h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
-              />
-            </div>
-            <figcaption className={`${label} mt-4 text-center`}>What I try to live by</figcaption>
-          </figure>
+          <GitHubActivity />
         </Reveal>
       </div>
     </section>
