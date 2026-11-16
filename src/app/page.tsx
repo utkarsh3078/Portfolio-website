@@ -22,7 +22,10 @@ export default function Home() {
       </main>
       {/* The closing band is always dark, in both themes, to match the cover image.
           data-theme="dark" makes the colour tokens inside it resolve to their dark values. */}
-      <div data-theme="dark" className="mt-10 border-t border-line bg-[#010103] text-fg sm:mt-14">
+      <div
+        data-theme="dark"
+        className="mt-10 border-t border-line bg-[#010103] text-fg sm:mt-14"
+      >
         <Motto />
         <Footer />
       </div>

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 
 import { Providers } from "@/components/providers";
 import { profile } from "@/data/profile";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -35,7 +36,8 @@ export const metadata: Metadata = {
   authors: [{ name: profile.name }],
   openGraph: {
     title: `${profile.name} — ${profile.role}`,
-    description: "Full-stack web apps and AI tools, built end to end and deployed.",
+    description:
+      "Full-stack web apps and AI tools, built end to end and deployed.",
     type: "website",
   },
 };
@@ -68,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <Analytics />
         <Providers>{children}</Providers>
       </body>
     </html>
