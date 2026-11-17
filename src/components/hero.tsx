@@ -13,21 +13,12 @@ import { EASE } from "@/components/reveal";
 import { profile } from "@/data/profile";
 import { heroShots } from "@/data/projects";
 
-// The headline is set as three lines. Each word slides up from behind a mask,
-// one after another across all three lines.
-const HEADLINE: { text: string; accent?: boolean }[][] = [
-  [{ text: "I" }, { text: "build" }, { text: "full-stack" }],
-  [{ text: "web" }, { text: "apps" }, { text: "and" }, { text: "AI", accent: true }, { text: "tools,", accent: true }],
-  [{ text: "and" }, { text: "I" }, { text: "ship" }, { text: "them." }],
-];
-const WORD_COUNT = HEADLINE.flat().length;
-// The position of each line's first word in the overall sequence
-const LINE_OFFSET = HEADLINE.map((_, line) => HEADLINE.slice(0, line).flat().length);
-
-const HEADLINE_START = 0.3;
-const WORD_STAGGER = 0.055;
-// When the headline has finished and the rest can come in
-const AFTER_HEADLINE = HEADLINE_START + WORD_COUNT * WORD_STAGGER;
+// The name is the headline. Each word slides up from behind a mask, one after another.
+const NAME_WORDS = profile.name.split(" ");
+const NAME_START = 0.3;
+const WORD_STAGGER = 0.09;
+// When the name has finished and the rest can come in
+const AFTER_NAME = NAME_START + NAME_WORDS.length * WORD_STAGGER + 0.3;
 
 function fadeUp(delay: number) {
   return {
@@ -132,39 +123,57 @@ export function Hero() {
             {profile.availability}
           </motion.p>
 
-          <h1 className="mt-7 font-display text-[clamp(2.25rem,11.6vw,4.6rem)] leading-[1.02] lg:text-[clamp(2.7rem,6.6vw,5rem)]">
-            {HEADLINE.map((line, lineIndex) => (
-              <span key={lineIndex} className="block">
-                {line.map((word, wordIndex) => (
-                  <span key={wordIndex}>
-                    <span className="mb-[-0.14em] inline-block overflow-hidden pb-[0.14em] align-bottom">
-                      <motion.span
-                        className={`inline-block ${word.accent ? "text-accent" : ""}`}
-                        initial={{ y: "115%" }}
-                        animate={{ y: 0 }}
-                        transition={{
-                          duration: 0.85,
-                          delay: HEADLINE_START + (LINE_OFFSET[lineIndex] + wordIndex) * WORD_STAGGER,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                      >
-                        {word.text}
-                      </motion.span>
-                    </span>{" "}
-                  </span>
-                ))}
+          <motion.p {...fadeUp(0.22)} className="mt-8 text-lg text-muted sm:text-xl">
+            Hi, I&apos;m
+          </motion.p>
+
+          <h1 className="mt-1 font-display text-[clamp(2.75rem,13vw,5.25rem)] leading-[0.98] lg:text-[clamp(3.4rem,7.2vw,5.75rem)]">
+            {NAME_WORDS.map((word, index) => (
+              <span key={index}>
+                <span className="mb-[-0.14em] inline-block overflow-hidden pb-[0.14em] align-bottom">
+                  <motion.span
+                    className="inline-block"
+                    initial={{ y: "115%" }}
+                    animate={{ y: 0 }}
+                    transition={{
+                      duration: 0.85,
+                      delay: NAME_START + index * WORD_STAGGER,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                </span>{" "}
               </span>
             ))}
           </h1>
 
           <motion.p
-            {...fadeUp(AFTER_HEADLINE)}
-            className="mt-7 max-w-xl text-[1.08rem] leading-relaxed text-muted sm:text-lg"
+            {...fadeUp(AFTER_NAME)}
+            className="mt-5 flex flex-col gap-x-3 gap-y-1.5 font-mono text-xs uppercase tracking-[0.18em] text-accent sm:flex-row sm:items-center"
+          >
+            {/* One row on wider screens; role above location on phones */}
+            <span aria-hidden="true" className="hidden h-px w-8 bg-accent sm:block" />
+            <span>{profile.role}</span>
+            <span aria-hidden="true" className="hidden text-muted sm:inline">/</span>
+            <span className="text-muted">{profile.location}</span>
+          </motion.p>
+
+          <motion.p
+            {...fadeUp(AFTER_NAME + 0.1)}
+            className="mt-7 max-w-xl font-display text-[clamp(1.45rem,5.6vw,2rem)] leading-[1.15]"
+          >
+            I build full-stack web apps and <span className="text-accent">AI tools</span>, and I ship them.
+          </motion.p>
+
+          <motion.p
+            {...fadeUp(AFTER_NAME + 0.2)}
+            className="mt-5 max-w-xl text-[1.08rem] leading-relaxed text-muted sm:text-lg"
           >
             {profile.intro}
           </motion.p>
 
-          <motion.div {...fadeUp(AFTER_HEADLINE + 0.12)} className="mt-9 flex flex-wrap items-center gap-3">
+          <motion.div {...fadeUp(AFTER_NAME + 0.3)} className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#work"
               className="group inline-flex h-12 items-center gap-2 rounded-full bg-fg pl-6 pr-5 text-[0.95rem] font-medium text-bg transition-transform hover:scale-[1.03] active:scale-[0.98]"
@@ -207,7 +216,7 @@ export function Hero() {
       </div>
 
       <motion.dl
-        {...fadeUp(AFTER_HEADLINE + 0.25)}
+        {...fadeUp(AFTER_NAME + 0.42)}
         className="container-page mt-16 grid grid-cols-3 lg:mt-20"
       >
         {profile.stats.map((stat, index) => (
@@ -215,7 +224,7 @@ export function Hero() {
           <div key={stat.label} className="flex flex-col-reverse justify-end border-l border-line pl-4 pr-2 sm:pl-5">
             <dt className="mt-2.5 text-sm text-muted">{stat.label}</dt>
             <dd className="font-display text-5xl leading-none sm:text-6xl">
-              <Counter value={stat.value} suffix={stat.suffix} delay={AFTER_HEADLINE + 0.3 + index * 0.1} />
+              <Counter value={stat.value} suffix={stat.suffix} delay={AFTER_NAME + 0.5 + index * 0.1} />
             </dd>
           </div>
         ))}

@@ -14,7 +14,7 @@ export const profile = {
   copyrightYear: 2026,
 
   intro:
-    "I'm Utkarsh, an Information Technology student at USICT, GGSIPU. I work mostly in TypeScript, React, Next.js and Node. Lately I've been building retrieval and LLM features where the answer has to be right, not just fluent.",
+    "I'm an Information Technology student at USICT, GGSIPU. I work mostly in TypeScript, React, Next.js and Node. Lately I've been building retrieval and LLM features where the answer has to be right, not just fluent.",
 
   socials: [
     { label: "GitHub", href: "https://github.com/utkarsh3078", icon: "github" },
