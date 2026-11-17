@@ -53,7 +53,7 @@ export async function GitHubActivity() {
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
         <div>
           <p className={label}>GitHub activity</p>
-          <p className="mt-3 font-serif text-[2rem] leading-tight sm:text-4xl">
+          <p className="mt-3 font-display text-[2rem] leading-tight sm:text-4xl">
             <span className="text-accent">
               <Counter value={data.total} />
             </span>{" "}

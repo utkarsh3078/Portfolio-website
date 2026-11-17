@@ -60,7 +60,6 @@
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-serif: var(--font-instrument-serif), Georgia, serif;
 
   --shadow-card: var(--shadow);
 
@@ -115,6 +114,13 @@ body {
 }
 
 /* ---------- Reusable pieces ---------- */
+/* Headings and big numbers: Geist, semibold, tightly tracked. */
+@utility font-display {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
 @utility container-page {
   width: 100%;
   max-width: 72rem;

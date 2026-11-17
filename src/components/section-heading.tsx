@@ -14,7 +14,7 @@ export function SectionHeading({ id, eyebrow, title, text }: SectionHeadingProps
         <span aria-hidden="true" className="h-px w-8 bg-accent" />
         {eyebrow}
       </p>
-      <h2 id={id} className="mt-4 font-serif text-[clamp(2.3rem,5.5vw,3.6rem)] leading-[1.02] tracking-[-0.015em]">
+      <h2 id={id} className="mt-4 font-display text-[clamp(2.3rem,5.5vw,3.6rem)] leading-[1.02]">
         {title}
       </h2>
       {text && <p className="mt-4 text-lg leading-relaxed text-muted">{text}</p>}

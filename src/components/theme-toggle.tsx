@@ -4,7 +4,9 @@ import { Moon, Sun } from "lucide-react";
 
 /**
  * The current theme lives on <html data-theme>, set before first paint by the
- * script in layout.tsx. CSS picks which icon to show, so this needs no state.
+ * script in layout.tsx from the visitor's system setting. CSS picks which icon
+ * to show, so this needs no state. A manual switch lasts only for this tab, so
+ * the next visit opens in the system theme again.
  */
 export function ThemeToggle() {
   function toggle() {
@@ -12,7 +14,7 @@ export function ThemeToggle() {
     const next = root.dataset.theme === "dark" ? "light" : "dark";
     root.dataset.theme = next;
     try {
-      localStorage.setItem("theme", next);
+      sessionStorage.setItem("theme", next);
     } catch {
       // Private windows can block storage; the toggle still works for this visit.
     }

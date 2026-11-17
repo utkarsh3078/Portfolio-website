@@ -74,7 +74,7 @@ export function Header() {
             aria-label={`${profile.name}, back to top`}
             className="flex h-9 items-center gap-2 rounded-full pl-1 pr-2 sm:pr-3"
           >
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-fg font-serif text-[0.95rem] leading-none text-bg">
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-fg font-display text-[0.95rem] leading-none text-bg">
               {profile.initials[0]}
             </span>
             <span className="hidden text-sm font-medium sm:block">{profile.name}</span>

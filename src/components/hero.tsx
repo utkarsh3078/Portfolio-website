@@ -132,14 +132,14 @@ export function Hero() {
             {profile.availability}
           </motion.p>
 
-          <h1 className="mt-7 font-serif text-[clamp(2.25rem,11.6vw,4.6rem)] leading-[1.02] lg:text-[clamp(2.7rem,6.6vw,5rem)] tracking-[-0.02em]">
+          <h1 className="mt-7 font-display text-[clamp(2.25rem,11.6vw,4.6rem)] leading-[1.02] lg:text-[clamp(2.7rem,6.6vw,5rem)]">
             {HEADLINE.map((line, lineIndex) => (
               <span key={lineIndex} className="block">
                 {line.map((word, wordIndex) => (
                   <span key={wordIndex}>
                     <span className="mb-[-0.14em] inline-block overflow-hidden pb-[0.14em] align-bottom">
                       <motion.span
-                        className={`inline-block ${word.accent ? "pr-[0.04em] italic text-accent" : ""}`}
+                        className={`inline-block ${word.accent ? "text-accent" : ""}`}
                         initial={{ y: "115%" }}
                         animate={{ y: 0 }}
                         transition={{
@@ -214,7 +214,7 @@ export function Hero() {
           // The label comes first in the markup and the number first on screen
           <div key={stat.label} className="flex flex-col-reverse justify-end border-l border-line pl-4 pr-2 sm:pl-5">
             <dt className="mt-2.5 text-sm text-muted">{stat.label}</dt>
-            <dd className="font-serif text-5xl leading-none sm:text-6xl">
+            <dd className="font-display text-5xl leading-none sm:text-6xl">
               <Counter value={stat.value} suffix={stat.suffix} delay={AFTER_HEADLINE + 0.3 + index * 0.1} />
             </dd>
           </div>

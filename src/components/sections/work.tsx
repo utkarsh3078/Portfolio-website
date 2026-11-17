@@ -49,7 +49,7 @@ export function WorkSection() {
                   rel="noopener noreferrer"
                   className="group grid items-baseline gap-x-6 gap-y-1 py-5 transition-[padding] duration-300 hover:px-3 sm:grid-cols-[13rem_minmax(0,1fr)_auto_1.25rem]"
                 >
-                  <span className="font-serif text-2xl transition-colors group-hover:text-accent">{build.title}</span>
+                  <span className="font-display text-2xl transition-colors group-hover:text-accent">{build.title}</span>
                   <span className="text-muted">{build.text}</span>
                   <span className="font-mono text-xs text-muted">{build.stack}</span>
                   <ArrowUpRight className="hidden h-4 w-4 self-center text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent sm:block" />

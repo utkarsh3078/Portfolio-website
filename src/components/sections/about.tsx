@@ -60,7 +60,7 @@ export function AboutSection() {
           <div className={`${card} h-full`}>
             <GraduationCap className="h-5 w-5 text-accent" />
             <p className={`${label} mt-5`}>Education</p>
-            <p className="mt-2 font-serif text-[1.7rem] leading-tight">{profile.education.course}</p>
+            <p className="mt-2 font-display text-[1.7rem] leading-tight">{profile.education.course}</p>
             <p className="mt-1.5 text-muted">
               {profile.education.school}, {profile.education.place}
             </p>
@@ -72,7 +72,7 @@ export function AboutSection() {
           <div className={`${card} h-full`}>
             <Users className="h-5 w-5 text-accent" />
             <p className={`${label} mt-5`}>{profile.community.org}</p>
-            <p className="mt-2 font-serif text-[1.7rem] leading-tight">{profile.community.title}</p>
+            <p className="mt-2 font-display text-[1.7rem] leading-tight">{profile.community.title}</p>
             <p className="mt-1.5 text-muted">{profile.community.text}</p>
           </div>
         </Reveal>
@@ -89,7 +89,7 @@ export function AboutSection() {
                     className="absolute -left-[5px] top-1 h-[9px] w-[9px] rounded-full bg-accent sm:-top-[5px] sm:left-0"
                   />
                   <p className="font-mono text-xs text-accent">{step.year}</p>
-                  <p className="mt-1.5 font-serif text-2xl leading-tight">{step.title}</p>
+                  <p className="mt-1.5 font-display text-2xl leading-tight">{step.title}</p>
                   <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{step.text}</p>
                 </li>
               ))}
@@ -101,7 +101,7 @@ export function AboutSection() {
         <Reveal delay={0.08}>
           <div className={`${card} relative h-full overflow-hidden pb-28 sm:pb-28`}>
             <p className={label}>Away from the keyboard</p>
-            <p className="mt-3 font-serif text-7xl leading-none text-accent">{profile.swimming.value}</p>
+            <p className="mt-3 font-display text-7xl leading-none text-accent">{profile.swimming.value}</p>
             <p className="relative z-10 mt-2 max-w-[16rem] text-muted">{profile.swimming.text}</p>
             <Waves />
           </div>
@@ -114,7 +114,7 @@ export function AboutSection() {
             <dl className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-5">
               {profile.skills.map((skill) => (
                 <div key={skill.group}>
-                  <dt className="font-serif text-2xl">{skill.group}</dt>
+                  <dt className="font-display text-2xl">{skill.group}</dt>
                   <dd className="mt-3 flex flex-wrap gap-1.5">
                     {skill.items.map((item) => (
                       <span

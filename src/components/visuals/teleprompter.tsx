@@ -42,7 +42,7 @@ export function Teleprompter() {
         </span>
       </div>
 
-      <p className="my-auto py-4 font-serif text-[clamp(1.25rem,3.4vw,1.9rem)] leading-[1.28]">
+      <p className="my-auto py-4 font-medium tracking-tight text-[clamp(1.25rem,3.4vw,1.9rem)] leading-[1.28]">
         {WORDS.map((word, index) => (
           <span
             key={index}

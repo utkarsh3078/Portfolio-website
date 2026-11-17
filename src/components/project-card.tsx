@@ -79,7 +79,7 @@ export function ProjectCard({ project, wide = false, flip = false }: ProjectCard
             <span>{project.context}</span>
           </p>
 
-          <h3 className={`mt-4 font-serif leading-[1.05] ${wide ? "text-4xl sm:text-[2.7rem]" : "text-[2rem] sm:text-4xl"}`}>
+          <h3 className={`mt-4 font-display leading-[1.05] ${wide ? "text-4xl sm:text-[2.7rem]" : "text-[2rem] sm:text-4xl"}`}>
             {project.title}
           </h3>
           <p className="mt-3 text-[1.05rem] font-medium leading-snug">{project.tagline}</p>

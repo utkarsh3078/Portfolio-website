@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import { Providers } from "@/components/providers";
 import { profile } from "@/data/profile";
@@ -15,13 +15,6 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
 });
 
 const description =
@@ -49,8 +42,10 @@ export const viewport: Viewport = {
   ],
 };
 
-// Runs before first paint: use the saved theme, or the system preference.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+// Runs before first paint. The visitor's system setting picks the theme on every
+// visit, and the page follows live when the system switches (e.g. auto dark at
+// sunset). The header toggle only overrides it for the current tab.
+const themeScript = `(function(){var r=document.documentElement,m=matchMedia("(prefers-color-scheme: dark)");function o(){try{return sessionStorage.getItem("theme")}catch(e){return null}}function a(){var t=o();r.setAttribute("data-theme",t==="light"||t==="dark"?t:m.matches?"dark":"light")}try{localStorage.removeItem("theme")}catch(e){}a();m.addEventListener("change",function(){try{sessionStorage.removeItem("theme")}catch(e){}a()})})()`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -58,7 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-theme="light"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

@@ -22,9 +22,9 @@ export function ContactSection() {
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">Contact</p>
             <h2
               id="contact-title"
-              className="mx-auto mt-5 max-w-3xl font-serif text-[clamp(2.6rem,7.5vw,5rem)] leading-[0.98] tracking-[-0.02em]"
+              className="mx-auto mt-5 max-w-3xl font-display text-[clamp(2.6rem,7.5vw,5rem)] leading-[0.98]"
             >
-              Have something to build? <span className="italic text-accent">Let&apos;s talk.</span>
+              Have something to build? <span className="text-accent">Let&apos;s talk.</span>
             </h2>
             <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted">
               I&apos;m open to internships, freelance work and interesting side projects. You can reach me on any of
