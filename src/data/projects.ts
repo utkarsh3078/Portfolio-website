@@ -61,7 +61,10 @@ export const currentProjects: Project[] = [
     period: "Started Nov 2026",
     context: "Solo",
     tags: ["Next.js", "TypeScript", "React", "Vitest"],
-    links: [{ label: "Code", href: "https://github.com/utkarsh3078/vocalstep" }],
+    links: [
+      { label: "Live site", href: "https://vocalstep.in" },
+      { label: "Code", href: "https://github.com/utkarsh3078/vocalstep" },
+    ],
     visual: "teleprompter",
   },
 ];
